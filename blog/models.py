@@ -34,8 +34,7 @@ class Post(models.Model):
         verbose_name="タイトル"
     )
 
-    body = models.CharField(
-        max_length=99999,
+    body = models.TextField(
         blank=False,
         null=False,
         verbose_name="内容",
@@ -68,6 +67,11 @@ class Post(models.Model):
         Tag,
         blank=True,
         verbose_name="タグ"
+    )
+
+    published = models.BooleanField(
+        default=True,
+        verbose_name="公開"
     )
 
     def get_absolute_url(self):
