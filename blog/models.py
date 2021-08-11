@@ -30,37 +30,44 @@ class Post(models.Model):
     title = models.CharField(
         max_length=255,
         blank=False,
-        null=False
+        null=False,
+        verbose_name="タイトル"
     )
 
     body = models.CharField(
         max_length=99999,
         blank=False,
-        null=False
+        null=False,
+        verbose_name="内容",
+        help_text="HTMLは使えません。"
     )
 
     created_at = models.DateTimeField(
         auto_now_add=True,
         editable=False,
         blank=False,
-        null=False
+        null=False,
+        verbose_name="作成日"
     )
 
     updated_at = models.DateTimeField(
         auto_now=True,
         editable=False,
         blank=False,
-        null=False
+        null=False,
+        verbose_name="最終更新日"
     )
 
     category = models.ForeignKey(
         Category,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name="カテゴリー"
     )
 
     tags = models.ManyToManyField(
         Tag,
-        blank=True
+        blank=True,
+        verbose_name="タグ"
     )
 
     def get_absolute_url(self):
